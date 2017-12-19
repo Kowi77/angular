@@ -71,6 +71,10 @@
                         <li>
                             <a href="${orm}">Hibernate + JPA + ORM</a>
                         </li>
+
+                        <li>
+                            <a href="/runtimeException">Exception Handler</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
