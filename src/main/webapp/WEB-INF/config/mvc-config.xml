@@ -22,6 +22,11 @@
          and also resolves @Autowired and @Qualifier -->
     <context:component-scan base-package="ru.javastudy.mvcHtml5Angular.mvc" />
 
+    <!--org.springframework.web.servlet.PageNotFound.noHandlerFound No mapping found
+    for HTTP request with URI [/jdbcUpdate/user/username/user@javastudy.ru/enabled/resources/css/bootstrap.css]
+     in DispatcherServlet with name 'dispatcherServlet'-->
+    <!--<mvc:default-servlet-handler/>-->
+
     <!-- ViewResolver bean config for mapping strings to jsp views -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
@@ -47,6 +52,7 @@
     <mvc:view-controller path="/index.html" view-name="/index"/>
     <mvc:view-controller path="/about.html" view-name="/about/about"/>
     <mvc:view-controller path="/file.html" view-name="/file/file"/>
+    <mvc:view-controller path="/jdbc.html" view-name="/jdbc/jdbc"/>
 
 
 </beans>
