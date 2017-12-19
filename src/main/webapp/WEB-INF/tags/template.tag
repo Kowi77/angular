@@ -61,6 +61,10 @@
                         <li>
                             <a href="${jdbc}">JDBC c JDBCTemplates</a>
                         </li>
+                        <c:url value="/email.html" var="email" />
+                        <li>
+                            <a href="${email}">Java Mail API</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

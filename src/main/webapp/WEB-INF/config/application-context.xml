@@ -36,4 +36,25 @@
         <jdbc:script location="classpath:test-data.sql"/>
     </jdbc:initialize-database>
 
+    <!-- Java Mail Configuration -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="username" value="kovalenka1977@gmail.com"/><!--"${java.mail.username}"/>-->
+        <property name="password" value="belli2011"/><!--"${java.mail.password}"/>-->
+        <property name="port" value="465"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.starttls.required">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.host">smtp.gmail.com</prop><!--${java.mail.host}</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <!-- Velocity Email Template Config Bean -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath" value="/WEB-INF/email-templates/"/>
+    </bean>
+
 </beans>
