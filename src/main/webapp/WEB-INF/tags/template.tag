@@ -8,6 +8,8 @@
 <head>
     <title><jsp:invoke fragment="title"/></title>
 
+    <base href="${pageContext.request.contextPath}/"/>
+
     <!-- Bootstrap Core CSS -->
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <link href="${bootstrap}" rel="stylesheet" />
@@ -64,6 +66,10 @@
                         <c:url value="/email.html" var="email" />
                         <li>
                             <a href="${email}">Java Mail API</a>
+                        </li>
+                        <c:url value="/orm.html" var="orm" />
+                        <li>
+                            <a href="${orm}">Hibernate + JPA + ORM</a>
                         </li>
                     </ul>
                 </li>
