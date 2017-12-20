@@ -52,6 +52,15 @@
         </property>
     </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/interceptorCall/*"/>
+            <!--need to use ' /** ' not ' /* ' if you want to intercept all requests.-->
+            <!--<mvc:mapping path="/**"/>-->
+            <bean class="ru.javastudy.mvcHtml5Angular.mvc.interceptors.SiteInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <mvc:view-controller path="/index.html" view-name="/index"/>
     <mvc:view-controller path="/about.html" view-name="/about/about"/>
     <mvc:view-controller path="/file.html" view-name="/file/file"/>
