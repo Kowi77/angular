@@ -71,9 +71,12 @@
                         <li>
                             <a href="${orm}">Hibernate + JPA + ORM</a>
                         </li>
-
                         <li>
                             <a href="/runtimeException">Exception Handler</a>
+                        </li>
+                        <c:url value="/jstl.html" var="jstl" />
+                        <li>
+                            <a href="${jstl}">JSTL</a>
                         </li>
                     </ul>
                 </li>
