@@ -78,6 +78,14 @@
                         <li>
                             <a href="${jstl}">JSTL</a>
                         </li>
+                        <c:url value="/scope.html" var="scope" />
+                        <li>
+                            <a href="${scope}">Scope in MVC</a>
+                        </li>
+                        <c:url value="/cookie.html" var="myCookie" />
+                        <li>
+                            <a href="${myCookie}">Cookie</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

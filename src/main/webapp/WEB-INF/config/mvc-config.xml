@@ -69,6 +69,8 @@
     <mvc:view-controller path="/orm.html" view-name="/orm/orm"/>
     <mvc:view-controller path="/exception.html" view-name="/error/exception"/>
     <mvc:view-controller path="/jstl.html" view-name="/jstl/jstl"/>
+    <mvc:view-controller path="/scope.html" view-name="/scope/scope"/>
+    <mvc:view-controller path="/cookie.html" view-name="/cookie/cookie"/>
 
 
 </beans>

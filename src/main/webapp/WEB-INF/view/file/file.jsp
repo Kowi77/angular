@@ -58,6 +58,7 @@
             <hr>
 
         </div>
+        <p><b>SessionScope attribute:</b> ${sessionScope.sessionObject} </p>
         <!-- /.container -->
     </jsp:body>
 </page:template>
