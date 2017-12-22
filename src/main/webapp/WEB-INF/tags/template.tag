@@ -2,13 +2,12 @@
 <%@tag description="Template Site tag" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <%@attribute name="title" fragment="true" %>
 <html>
 <head>
     <title><jsp:invoke fragment="title"/></title>
-
-    <base href="${pageContext.request.contextPath}/"/>
 
     <!-- Bootstrap Core CSS -->
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
@@ -19,20 +18,29 @@
     <link href="${startertemplate}" rel="stylesheet" />
 
     <!-- Custom Fonts -->
-    <spring:url value="/resources/css/font-awesome.min.css" var="fontawesome"/>
+    <spring:url value="/resources/font-awesome/css/font-awesome.min.css" var="fontawesome"/>
     <link href="${fontawesome}" rel="stylesheet" />
 
     <!-- jQuery -->
-    <spring:url value="/resources/js/jquery.js" var="jqueryjs"/>
+    <spring:url value="/resources/js/jquery-2.1.4.min.js" var="jqueryjs"/>
     <script src="${jqueryjs}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <spring:url value="/resources/js/bootstrap.min.js" var="js"/>
     <script src="${js}"></script>
-
 </head>
 
 <body>
+
+<c:url value="/file.html" var="file"/>
+<c:url value="/jdbc.html" var="jdbc"/>
+<c:url value="/email.html" var="email" />
+<c:url value="/orm.html" var="orm" />
+<%--<c:url value="/runtimeException.html" var="runtimeException" />--%>
+<c:url value="/jstl.html" var="jstl" />
+<c:url value="/scope.html" var="scope" />
+<c:url value="/cookie.html" var="cookie" />
+<c:url value="/security.html" var="security" />
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -50,41 +58,65 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_USER', 'ROLE_USER')" var="isUSer"/>
+
+
+                    <c:if test="${not isUSer}">
+                        <li style="padding-top: 15px; padding-bottom: 15px; color: red">
+                            <c:if test="${empty param.error}">
+                             Вы не вошли в приложение
+                            </c:if>
+                        </li>
+                        <li> <a style="color: Green;" href="<c:url value="/login.html"/>">Login</a> </li>
+                    </c:if>
+
+
+
+                    <c:if test="${isUSer}">
+                        <li style="padding-top: 15px; padding-bottom: 15px; color: green">
+                            Вы вошли как:
+                            <security:authentication property="principal.username"/> с ролью:
+                            <b><security:authentication property="principal.authorities"/></b>
+
+                        </li>
+                        <li> <a style="color: red;" href="<c:url value="/j_spring_security_logout"/>">Logout</a> </li>
+                    </c:if>
+
+
                 <c:url value="/about.html" var="about"/>
                 <li><a href="${about}">About</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <c:url value="/file.html" var="file"/>
                         <li>
-                            <a href="${file}">PDF Excel</a>
+                            <a href="${file}">Загрузка файла PDF и Excel</a>
                         </li>
-                        <c:url value="/jdbc.html" var="jdbc"/>
                         <li>
                             <a href="${jdbc}">JDBC c JDBCTemplates</a>
                         </li>
-                        <c:url value="/email.html" var="email" />
                         <li>
-                            <a href="${email}">Java Mail API</a>
-                        </li>
-                        <c:url value="/orm.html" var="orm" />
-                        <li>
-                            <a href="${orm}">Hibernate + JPA + ORM</a>
+                            <a href="${email}">Работа с Java Mail API</a>
                         </li>
                         <li>
-                            <a href="/runtimeException">Exception Handler</a>
+                            <a href="${rest}">Rest Services</a>
                         </li>
-                        <c:url value="/jstl.html" var="jstl" />
                         <li>
-                            <a href="${jstl}">JSTL</a>
+                            <a href="${orm}">Spring MVC и Hibernate 5</a>
                         </li>
-                        <c:url value="/scope.html" var="scope" />
                         <li>
-                            <a href="${scope}">Scope in MVC</a>
+                            <a href="${runtimeException}">Runtime Exception</a>
                         </li>
-                        <c:url value="/cookie.html" var="myCookie" />
                         <li>
-                            <a href="${myCookie}">Cookie</a>
+                            <a href="${jstl}">JSTL Example</a>
+                        </li>
+                        <li>
+                            <a href="${scope}">Session Object Example</a>
+                        </li>
+                        <li>
+                            <a href="${cookieView}">Работа с cookie</a>
+                        </li>
+                        <li>
+                            <a href="${security}">Spring Security</a>
                         </li>
                     </ul>
                 </li>
@@ -104,7 +136,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright В© Javastudy.ru 2016</p>
+                <p>Copyright © Javastudy.ru 2016</p>
             </div>
         </div>
     </footer>

@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
@@ -11,17 +12,9 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context.xsd
 	   http://www.springframework.org/schema/jdbc
-	   http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
-
-    <!-- Three schedulers turn off now!
-    <import resource="schedule-config.xml"/> -->
-
-    <!-- Static Resources Configuration in webapp/resources (get access to static sources such as CSS and JavaScript files) -->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
-    <!-- themes can be put in different folder such as
-        <mvc:resources mapping="/resources/**" location="/resources/themeBlue" />
-        <mvc:resources mapping="/resources/**" location="/resources/themeGreen" />
-     -->
+       http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd">
 
     <!--find property file. See bean id='dataSource' for example ${jdbc.hsqldb.driverClass}-->
     <context:property-placeholder location="classpath:util.properties" />
@@ -61,6 +54,9 @@
         <property name="resourceLoaderPath" value="/WEB-INF/email-templates/"/>
     </bean>
 
+    <!-- REST template configuration -->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+
     <!--Do not forget activate @Transactional JPA annotation with <annotation-driven/>-->
     <!-- JPA Persistence Context and EntityManager configuration -->
     <bean id="entityManagerFactory"
@@ -88,4 +84,14 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
+
+    <!--not uses but could autowired in JDBCExample bean-->
+    <!--     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+          <property name="dataSource" ref="dataSource"></property>
+      </bean>
+       -->
+
+    <!-- schedule config
+    <import resource="schedule-config.xml"/> -->
+
 </beans>
