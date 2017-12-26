@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<%@tag description="Template Site tag" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@taglib prefix="headerTemplate" tagdir="/WEB-INF/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@attribute name="title" fragment="true" %>
-<%@attribute name="header" fragment="true" %>
+<%@ taglib prefix="headerTemplate" tagdir="/WEB-INF/tags" %>
+
 <html>
 <head>
     <title><jsp:invoke fragment="title"/></title>
-
     <!-- Bootstrap Core CSS -->
     <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
     <link href="${bootstrap}" rel="stylesheet" />
@@ -30,10 +26,22 @@
     <!-- Bootstrap Core JavaScript -->
     <spring:url value="/resources/js/bootstrap.min.js" var="js"/>
     <script src="${js}"></script>
+
+    <!-- AngularJS min production framework -->
+    <spring:url value="/resources/angularjs/angular.min.js" var="angularjs" />
+    <script src="${angularjs}"></script>
+
+
+    <!-- AngularJS min production routing framework -->
+    <spring:url value="/resources/angularjs/angular-route.min.js" var="angularroute" />
+    <script src="${angularroute}"></script>
+
+    <!-- AngularJS min production resource -->
+    <spring:url value="/resources/angularjs/angular-resource.min.js" var="angularresource" />
+    <script src="${angularresource}"></script>
 </head>
 
 <body>
-
 
 <headerTemplate:header-template/>
 
@@ -47,7 +55,7 @@
             <div class="col-lg-12">
                 <a href="<%=request.getContextPath()%>?languageVar=en">EN</a>
                 <a href="<%=request.getContextPath()%>?languageVar=ru">RU</a>
-                <p>Copyright В© Javastudy.ru 2016</p>
+                <p>Copyright � Javastudy.ru 2016</p>
             </div>
         </div>
     </footer>
