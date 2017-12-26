@@ -41,6 +41,7 @@
 <c:url value="/scope.html" var="scope" />
 <c:url value="/cookie.html" var="cookie" />
 <c:url value="/security.html" var="security" />
+<c:url value="/rest.html" var="rest" />
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -117,6 +118,9 @@
                         </li>
                         <li>
                             <a href="${security}">Spring Security</a>
+                        </li>
+                        <li>
+                            <a href="${rest}">Rest (JSON + XML)</a>
                         </li>
                     </ul>
                 </li>
